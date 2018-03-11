@@ -37,4 +37,4 @@ def creat_index_txt(path,trainname,valname):
     valtxt.close()
 
 if __name__ == "__main__":
-    creat_index_txt('/home/yxy/Workspace/data','train.txt','val.txt')
+    creat_index_txt('/Workspace/data','train.txt','val.txt')
