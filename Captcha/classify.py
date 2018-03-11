@@ -16,7 +16,7 @@ from PIL import Image,ImageDraw,ImageFont,ImageFilter
 
 import caffe
 
-def erode(img, size):
+def erode(img, size):  #noise elimination
     row = img.shape[0]
     col = img.shape[1]
     n = (size-1)/2
@@ -38,7 +38,7 @@ def erode(img, size):
                 res[i][j] = 255
     return res
 
-def extract_character(img):
+def extract_characternum_img(img):  #split image
     res = []
     row = img.shape[0]
     col = img.shape[1]
@@ -71,7 +71,7 @@ def process_image(imgfile):
     r, g, b, a = img.split()
     img = Image.merge("RGB", (r, g, b))
     img = np.array(img)
-    res = extract_character(img)
+    res = extract_characternum_img(img)
     for k in range(0, 6):
         tmp = Image.fromarray(res[k])
         tmp = tmp.convert('L')
@@ -82,7 +82,7 @@ def process_image(imgfile):
             tmp.save(path)
     return res
 
-def output(input_file,input_scale=0.00390625,):
+def output_res(input_file,input_scale=0.00390625,):
     pycaffe_dir = os.path.dirname(__file__)
     #import pdb;pdb.set_trace()
     model_def=os.path.join(pycaffe_dir,
@@ -92,9 +92,7 @@ def output(input_file,input_scale=0.00390625,):
     gpu='store_true'
 
     images_dim='12,12'
-
-    mean_file=os.path.join(pycaffe_dir,
-                             'caffe/imagenet/ilsvrc_2012_mean.npy')
+    
     raw_scale=1
 
     channel_swap='0'
@@ -159,12 +157,11 @@ def output(input_file,input_scale=0.00390625,):
     return maxind,maxnum,smaxind,smaxnum
 
 if __name__ == '__main__':
-    
     for k in range(1,6):
         process_image('test/'+str(k)+'.png')
         ans = []
         for i in range(1,7):
-            maxind,maxnum,smaxind,smaxnum = output('./test/'+str(k)+str(i)+'.png')
+            maxind,maxnum,smaxind,smaxnum = output_res('./test/'+str(k)+str(i)+'.png')
             tmp = [maxind,maxnum,smaxind,smaxnum]
             ans.append((str(maxind)+':'+str(maxnum)+'; '+str(smaxind)+':'+str(smaxnum)))
         output_file = './test/'+str(k)+'.txt'
