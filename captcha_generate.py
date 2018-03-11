@@ -12,7 +12,7 @@ def max_file_num(path):
     return res
 
 def random_fond():  
-    path='/home/yxy/Workspace/font/'
+    path='/Workspace/font/'
     for root,dirs,files in os.walk(path):
         files
     fond = files[random.randint(0,len(files)-1)]	    
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     n = 3000
     for j in range(36*36):
         code = random_code(1)
-        path = '/home/yxy/Workspace/data/' + code
+        path = '/Workspace/data/' + code
         if not os.path.exists(path):
             fmax = 0
             os.makedirs(path)
