@@ -15,4 +15,4 @@ def move_file(path, des1, des2):
                 shutil.move(path+'/'+sdir+'/'+sfile,des2+sdir+'_'+sfile)
 
 if __name__ == "__main__":
-    move_file('/Workspace/data','/Workspace/train/','/Workspace/val/')
+    move_file('/Workspace/data','/Workspace/caffe/examples/Captcha/train/','/Workspace/caffe/examples/Captcha/val/')
