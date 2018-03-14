@@ -11,6 +11,15 @@
   
   Captcha/create_dataset.sh 
   创建lmdb格式的训练数据集和验证数据集
+
+  Captcha/lenet_train_test.prototxt  
+  训练模型文件
   
+  Captcha/lenet_solver_adam.prototxt 
+  Solver文件
+  
+  Captcha/deploy.prototxt   
+  测试模型文件
+  
   Captcha/classify.py 
   处理验证码图片并识别其中字符
