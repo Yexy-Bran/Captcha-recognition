@@ -12,7 +12,7 @@
   Captcha/create_dataset.sh 
   创建lmdb格式的训练数据集和验证数据集
 
-  Captcha/lenet_train_test.prototxt  
+  Captcha/lenet_train_test.prototxt
   训练模型文件
   
   Captcha/lenet_solver_adam.prototxt 
